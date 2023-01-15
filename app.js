@@ -10,8 +10,9 @@ var passport = require('passport');
 
 // Connect to db
 mongoose
-    .connect('mongodb://localhost/cmscart')
-    // .connect('mongodb://127.0.0.1:27017/cmscart')
+    // .connect("mongodb+srv://admin:<password>@cluster0.nsap3it.mongodb.net/?retryWrites=true&w=majority")
+    // .connect('mongodb://localhost/cmscart')
+    .connect('mongodb://127.0.0.1:27017/cmscart')
     .then(() => {
         console.log("DB Connetion Successfull");
     })
@@ -19,11 +20,11 @@ mongoose
         console.log(err.message);
     });
 // mongoose.connect(config.database);
-// var db = mongoose.connection;
-// db.on('error', console.error.bind(console, 'connection error:'));
-// db.once('open', function () {
-//     console.log('Connected to MongoDB');
-// });
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function () {
+    console.log('Connected to MongoDB');
+});
 
 // Init app
 var app = express();
