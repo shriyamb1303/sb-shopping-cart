@@ -11,8 +11,8 @@ var passport = require('passport');
 // Connect to db
 mongoose
     // .connect("mongodb+srv://admin:admin@cluster0.nsap3it.mongodb.net/?retryWrites=true&w=majority")
-    .connect('mongodb://localhost:27017/cmscart')
-    // .connect('mongodb://127.0.0.1:27017/cmscart')
+    // .connect('mongodb://localhost:27017/cmscart')
+    .connect('mongodb://127.0.0.1:27017/cmscart')
     .then(() => {
         console.log("DB Connetion Successfull");
     })
@@ -78,8 +78,13 @@ app.use(session({
     secret: 'keyboard cat',
     resave: false,
     // resave: true,
-    saveUninitialized: true
+    saveUninitialized: true,
     //  cookie: { secure: true }
+    cookie: {
+        httpOnly: true,
+        expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+        maxAge: 1000 * 60 * 60 * 24 * 7
+    }
 }));
 
 // Express Validator middleware
