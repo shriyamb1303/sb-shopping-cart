@@ -10,9 +10,9 @@ var passport = require('passport');
 
 // Connect to db
 mongoose
-    // .connect("mongodb+srv://admin:<password>@cluster0.nsap3it.mongodb.net/?retryWrites=true&w=majority")
+    .connect("mongodb+srv://admin:admin@cluster0.nsap3it.mongodb.net/?retryWrites=true&w=majority")
     // .connect('mongodb://localhost/cmscart')
-    .connect('mongodb://127.0.0.1:27017/cmscart')
+    // .connect('mongodb://127.0.0.1:27017/cmscart')
     .then(() => {
         console.log("DB Connetion Successfull");
     })
