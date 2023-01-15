@@ -9,6 +9,7 @@ var fileUpload = require('express-fileupload');
 var passport = require('passport');
 
 // Connect to db
+const MongoDBStore = require('connect-mongo');
 const dbUrl = 'mongodb://127.0.0.1:27017/cmscart';
 //'mongodb://localhost:27017/cmscart'
 //mongodb+srv://admin:admin@cluster0.nsap3it.mongodb.net/?retryWrites=true&w=majority
