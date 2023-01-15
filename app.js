@@ -12,7 +12,7 @@ var passport = require('passport');
 const MongoDBStore = require('connect-mongo');
 // const dbUrl = 'mongodb://127.0.0.1:27017/cmscart';
 //const dbUrl = 'mongodb://localhost:27017/cmscart'
-const dbUrl = 'mongodb+srv://admin:IU7xxe046vkSabKH@cluster0.nsap3it.mongodb.net/?retryWrites=true&w=majority'
+const dbUrl = 'mongodb://admin:IU7xxe046vkSabKH@cluster0.nsap3it.mongodb.net/?retryWrites=true&w=majority'
 mongoose
     .connect(dbUrl)
     .then(() => {
