@@ -78,27 +78,27 @@ app.use(bodyParser.json());
 // Express Session middleware
 const secret = 'keyboard cat';
 
-const store = MongoDBStore.create({
-    mongoUrl: dbUrl,
-    secret,
-    touchAfter: 24 * 60 * 60
-});
+// const store = MongoDBStore.create({
+//     mongoUrl: dbUrl,
+//     secret,
+//     touchAfter: 24 * 60 * 60
+// });
 
-store.on("error", function (e) {
-    console.log("SESSION STORE ERROR", e);
-})
+// store.on("error", function (e) {
+//     console.log("SESSION STORE ERROR", e);
+// })
 
 app.use(session({
     secret,
-    resave: false,
-    // resave: true,
+    // resave: false,
+    resave: true,
     saveUninitialized: true,
-    //  cookie: { secure: true }
-    cookie: {
-        httpOnly: true,
-        expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
-        maxAge: 1000 * 60 * 60 * 24 * 7
-    }
+    cookie: { secure: true }
+    // cookie: {
+    //     httpOnly: true,
+    //     expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+    //     maxAge: 1000 * 60 * 60 * 24 * 7
+    // }
 }));
 
 // Express Validator middleware
