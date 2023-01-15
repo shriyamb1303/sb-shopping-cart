@@ -9,10 +9,11 @@ var fileUpload = require('express-fileupload');
 var passport = require('passport');
 
 // Connect to db
+const dbUrl = 'mongodb://127.0.0.1:27017/cmscart';
+//'mongodb://localhost:27017/cmscart'
+//mongodb+srv://admin:admin@cluster0.nsap3it.mongodb.net/?retryWrites=true&w=majority
 mongoose
-    // .connect("mongodb+srv://admin:admin@cluster0.nsap3it.mongodb.net/?retryWrites=true&w=majority")
-    // .connect('mongodb://localhost:27017/cmscart')
-    .connect('mongodb://127.0.0.1:27017/cmscart')
+    .connect(dbUrl)
     .then(() => {
         console.log("DB Connetion Successfull");
     })
@@ -74,8 +75,20 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // Express Session middleware
+const secret = 'keyboard cat';
+
+const store = MongoDBStore.create({
+    mongoUrl: dbUrl,
+    secret,
+    touchAfter: 24 * 60 * 60
+});
+
+store.on("error", function (e) {
+    console.log("SESSION STORE ERROR", e);
+})
+
 app.use(session({
-    secret: 'keyboard cat',
+    secret,
     resave: false,
     // resave: true,
     saveUninitialized: true,
