@@ -9,7 +9,7 @@ var fileUpload = require('express-fileupload');
 var passport = require('passport');
 
 // Connect to db
-// const MongoDBStore = require('connect-mongo');
+const MongoDBStore = require('connect-mongo');
 // const dbUrl = 'mongodb://127.0.0.1:27017/cmscart';
 //const dbUrl = 'mongodb://localhost:27017/cmscart'
 const dbUrl = "mongodb+srv://admin:1234@cluster0.nsap3it.mongodb.net/?retryWrites=true&w=majority";
@@ -93,7 +93,8 @@ app.use(session({
     // resave: false,
     resave: true,
     saveUninitialized: true,
-    cookie: { secure: true }
+    cookie: { secure: true },
+    store: new MongoDBStore(options)
     // cookie: {
     //     httpOnly: true,
     //     expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
