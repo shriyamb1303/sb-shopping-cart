@@ -93,14 +93,14 @@ app.use(session({
     resave: false,
     // resave: true,
     saveUninitialized: true,
-    cookie: { secure: true },
+    // cookie: { secure: true },
     // store: new MongoDBStore(options)
-    store
-    // cookie: {
-    //     httpOnly: true,
-    //     expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
-    //     maxAge: 1000 * 60 * 60 * 24 * 7
-    // }
+    store,
+    cookie: {
+        httpOnly: true,
+        expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+        maxAge: 1000 * 60 * 60 * 24 * 7
+    }
 }));
 
 // Express Validator middleware
